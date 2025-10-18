@@ -10,10 +10,10 @@ A powerful CLI-based tool for real-time network packet capture, protocol analysi
 
 ```bash
 # Clone and run (Linux/macOS)
-sudo python pherion 0.1.py
+sudo python pherion.py
 
 # Windows (Run as Administrator)
-python pherion 0.1.py
+python pherion.py
 ```
 
 ## 📋 Prerequisites
@@ -29,23 +29,23 @@ python pherion 0.1.py
 pip install rich numpy scikit-learn scapy
 
 # Or run the script - it auto-installs dependencies
-sudo python pherion 0.1.py --interface eth0
+sudo python pherion.py --interface eth0
 ```
 
 ## 🎯 Usage
 
 ```bash
 # Analyze default interface
-sudo python npherion 0.1.py
+sudo python pherion.py
 
 # Specific interface
-sudo python pherion 0.1.py --interface eth0
+sudo python pherion.py --interface eth0
 
 # Wireless monitoring
-sudo python pherion 0.1.py --interface wlan0
+sudo python pherion.py --interface wlan0
 
 # All interfaces
-sudo python pherion 0.1.py --interface any
+sudo python pherion.py --interface any
 ```
 
 ## ✨ Features
@@ -146,7 +146,7 @@ Network Interface → Packet Capture → Protocol Analysis → Real-Time Display
 **Permission Denied:**
 ```bash
 # Linux/macOS
-sudo python pherion 0.1.py
+sudo python pherion.py
 
 # Windows - Run as Administrator
 ```
@@ -163,7 +163,7 @@ python -m pip install scapy
 # List available interfaces
 scapy.ifaces
 # Use correct interface name
-python pherion 0.1.py --interface "Ethernet 2"
+python pherion.py --interface "Ethernet 2"
 ```
 
 ## 🔮 Future Enhancements
@@ -188,6 +188,6 @@ Use responsibly and only on networks you own or have explicit permission to moni
 
 <div align="center">
 
-**🚀 Ready to monitor your network? Run `sudo python pherion 0.1.py` to begin!**
+**🚀 Ready to monitor your network? Run `sudo python pherion.py` to begin!**
 
 </div>
