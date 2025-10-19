@@ -1,0 +1,5 @@
+# Core Dependencies - Network Packet Analyzer
+rich>=13.0.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+scapy>=2.4.5
