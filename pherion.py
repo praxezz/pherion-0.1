@@ -2,16 +2,16 @@
 """
 Real-Time Network Packet Analyzer with Threat Detection
 A CLI-based tool for real packet capture, protocol analysis, and threat detection
+Windows-only version
 """
 
 import time
-import random
 import threading
 import queue
 import json
 import sqlite3
 import pickle
-from datetime import datetime, timedelta
+from datetime import datetime
 from collections import defaultdict, deque, Counter
 import subprocess
 import sys
@@ -47,7 +47,6 @@ from rich.table import Table
 from rich.live import Live
 from rich.panel import Panel
 from rich.layout import Layout
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
 from rich.tree import Tree
 from rich import box
 import numpy as np
@@ -642,22 +641,17 @@ class RealTimeAnalyzer:
         console.print("\n[green]Analysis complete. Data captured for forensic review.[/green]")
 
 def check_admin_privileges():
-    """Check if the script has administrator privileges"""
+    """Check if the script has administrator privileges on Windows"""
     try:
-        # For Windows
-        if platform.system() == "Windows":
-            import ctypes
-            return ctypes.windll.shell32.IsUserAnAdmin()
-        # For Unix/Linux
-        else:
-            return os.geteuid() == 0
+        import ctypes
+        return ctypes.windll.shell32.IsUserAnAdmin()
     except:
         return False
 
 def main():
-    """Main entry point"""
+    """Main entry point - Windows only version"""
     parser = argparse.ArgumentParser(
-        description='Real-Time Network Packet Analyzer with Live Traffic Monitoring',
+        description='Real-Time Network Packet Analyzer with Live Traffic Monitoring - Windows Version',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -665,30 +659,30 @@ Examples:
   python network_analyzer.py
   
   # Analyze on specific interface
-  python network_analyzer.py --interface eth0
+  python network_analyzer.py --interface "Ethernet"
   
   # Analyze on wireless interface
-  python network_analyzer.py --interface wlan0
-  
-  # Monitor with high detail
-  python network_analyzer.py --interface any
+  python network_analyzer.py --interface "Wi-Fi"
 
-Note: On Windows, run as Administrator. On Linux/macOS, use sudo.
+Note: Must be run as Administrator on Windows.
         """
     )
     
     parser.add_argument('--interface', type=str, default=None,
-                       help='Network interface to capture from (e.g., eth0, wlan0, any)')
+                       help='Network interface to capture from (e.g., "Ethernet", "Wi-Fi")')
     
     args = parser.parse_args()
+    
+    # Check for Windows platform
+    if platform.system() != "Windows":
+        console.print("[red]Error: This version is designed for Windows only[/red]")
+        console.print("[yellow]Use the standard version for cross-platform support[/yellow]")
+        sys.exit(1)
     
     # Check for admin privileges for packet capture
     if not check_admin_privileges():
         console.print("[red]Error: Administrator privileges required for packet capture[/red]")
-        if platform.system() == "Windows":
-            console.print("[yellow]Run as Administrator[/yellow]")
-        else:
-            console.print("[yellow]Run with: sudo python network_analyzer.py[/yellow]")
+        console.print("[yellow]Please run as Administrator[/yellow]")
         sys.exit(1)
     
     if not SCAPY_AVAILABLE:
@@ -727,9 +721,7 @@ Note: On Windows, run as Administrator. On Linux/macOS, use sudo.
   • Custom protocol detection
 """)
     
-    # Platform-specific information
-    system = platform.system()
-    console.print(f"[blue]🖥️  Platform:[/blue] {system}")
+    console.print(f"[blue]🖥️  Platform:[/blue] Windows")
     
     # Interface information
     if args.interface:
