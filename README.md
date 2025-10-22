@@ -189,19 +189,6 @@ pip install numpy
 pip install scikit-learn
 pip install scapy
 ```
-
-## 🔮 Future Enhancements
-
-- [ ] Threat intelligence integration
-- [ ] Machine learning anomaly detection using Isolation Forest
-- [ ] Packet capture to PCAP files
-- [ ] Custom filter expressions (BPF syntax)
-- [ ] Historical data analysis with SQLite storage
-- [ ] Web-based dashboard
-- [ ] Alert system with notifications
-- [ ] GeoIP integration for IP location
-- [ ] Performance metrics and trending
-
 ## 📄 License
 
 This tool is for educational and legitimate network monitoring purposes only. Users are responsible for complying with local laws and regulations.
